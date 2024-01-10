@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="about-container">
+        <div class="about-section about-me">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        👋 Hello! I'm Sunita, a passionate tech enthusiast based in Paniapt, Haryana NCR. Armed with a B.Tech in Computer Science and stellar academic achievements, I'm skilled in Python, C++, and Data Science, including ML, Data Analytics, NLTK, 📊 and Computer Vision 👁️. Proficient in web development (HTML, CSS, JavaScript, Flask) and experienced in MYSQL and SQLLITE. Currently, I'm immersing myself in the exciting world of Flask Blog App development, demonstrating my unwavering commitment to continuous learning.
+                    </p>
+                    <p>
+                        Let's connect on LinkedIn: <a href="https://www.linkedin.com/in/sunita-ghangas-4ba007202/">LinkedIn</a> or drop me an email at <a href="mailto:sunitaghg.86@gmail.com">sunitaghg.86@gmail.com</a>. Excited to collaborate on tech innovations! 🔗💡 #TechEnthusiast #DataScience #WebDevelopment #Flask #ML #ContinuousLearning
+                    </p>
+                </div>
+                <img src="/static/sunita.jpg" alt="Your Picture" class="about-image">
+            </div>
+        </div>
+
+        <div class="about-section other-contributor">
+            <h2 class="section-title">About Aarzoo</h2>
+            <div class="about-content">
+                <img src="/static/a.jpg" alt="Other Contributor Picture" class="about-image">
+                <div class="about-text">
+                    <p>
+                        
+                        I am Aarzoo Highly motivated and an undergraduate in Computer Science, eager to begin career as a Data Scientist. With a strong foundation in data analysis, statistical modeling, and machine learning, possess a solid understanding of data science concepts and tools, including Python, SQL, and data visualization. Dedicated to continuous learning and strong analytical abilities makes it possible to contribute to any data-driven organization and excel in a dynamic and fast-paced environment. moving towards flask &django webdevelopment  provide interactive and professional introduction with emojis in 15 line on this information
+                    </p>
+                    <p>
+                        Let's connect on LinkedIn: <a href="https://www.linkedin.com/in/sunita-ghangas-4ba007202/">LinkedIn</a> or drop me an email at <a href="mailto:aarzoo089@gmail.com">aarzoo089@gmail.com</a>. Excited to collaborate on tech innovations! 🔗💡 #TechEnthusiast #DataScience #WebDevelopment #Flask #ML #ContinuousLearning
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section about-project">
+            <h2 class="section-title">About the Project</h2>
+            <div class="about-text">
+                <p>
+                    The Flask Blog App stands as a dynamic and responsive web platform designed to provide users with a modern and engaging blogging experience. Its frontend boasts a captivating user interface crafted using HTML, CSS, and Bootstrap, ensuring a seamless and visually appealing journey.
+                </p>
+                <p>
+                    Powering the backend is Flask, a robust Python framework that facilitates scalable server-side logic. The app incorporates interactive elements such as real-time features, user authentication, and dynamic content loading to enhance engagement. Efficient database management, handled by SQLite or MySQL, ensures optimal storage and retrieval of data.
+                </p>
+                <p>
+                    With a responsive design catering to various devices, secure user authentication, and a user-friendly content management system, the app offers simplicity and security. Visual insights and data visualization add depth to the user experience, while features like social sharing, comments, and discussions foster a sense of community engagement.
+                </p>
+                <p>
+                    In summary, the Flask Blog App is a well-rounded platform, harmonizing frontend excellence, a Python-powered backend, and user-centric features to deliver an enriching blogging environment.
+                </p>
+            </div>
+        </div>
+
+        <div class="about-section about-flask-python">
+            <h2 class="section-title">About Flask and Python</h2>
+            <div class="about-text">
+                <p>
+                    Flask is a lightweight and flexible web framework written in Python. It's designed to be easy to use and allows developers to quickly build web applications. Flask follows the WSGI (Web Server Gateway Interface) standard and provides tools, libraries, and templates that simplify web development tasks.
+                </p>
+                <p>
+                    Python, on the other hand, is a high-level, general-purpose programming language known for its readability and simplicity. It supports multiple programming paradigms and has a vast ecosystem of libraries and frameworks. Python is widely used for web development, data analysis, machine learning, automation, and more.
+                </p>
+                <p>
+                    In summary, Flask is a web framework that leverages the power of Python to streamline the process of building web applications.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 90px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .about-section {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-image {
+            max-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        /* Additional Style for Each Section */
+        .about-me {
+            background-color: #f8f8f8;
+        }
+
+        .other-contributor {
+            background-color: #e8f8f8;
+        }
+
+        .about-project {
+            background-color: #f8e8f8;
+        }
+
+        .about-flask-python {
+            background-color: #f8f8e8;
+        }
+
+        /* Additional Style for Smaller Screens */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                margin-bottom: 20px;
+            }
+
+            .about-text {
+                padding: 0;
+            }
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sevillana&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            
+            margin: 0;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #f4f5f6; /* Light Gray */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c6a89; /* Orange */
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: rgb(53, 53, 209); /* Darker Orange on Hover */
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 8px;
+            border: none;
+            border-bottom: 2px solid #2c6a89; /* Orange */
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            width: auto;
+        }
+        .post-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .post-item {
+        max-width: 300px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .post-item:hover {
+        transform: scale(1.05);
+    }
+
+    .post-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-bottom: 2px solid #2c6a89; /* Orange */
+    }
+
+    .post-content {
+        padding: 20px;
+    }
+    #footer {
+        display: none;
+    }
+
+    .post-title {
+        font-size: 18px;
+        color: #2c6a89;
+        margin-bottom: 10px;
+    }
+
+    .post-link {
+        text-decoration: none;
+        color: #333;
+    }
+
+        .search-container button {
+            padding: 8px 15px;
+            background-color: #2c6a89; /* Orange */
+            color: #fff;
+            border: none;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            cursor: pointer;
+        }
+
+        header {
+            text-align: center;
+            background-color: #f7f7f7;
+            color: #130000;
+            padding: 20px 0;
+            font-weight: bold;
+            font-size: 40px;
+            font-family: 'Sevillana', sans-serif; /* Apply Sevillana font to the navigation */
+        }
+        footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+        <header>
+            <h1>Flask Blog</h1>
+        </header>
+        <div class="search-container">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Search..." name="search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <section id="content">
+        {% block content %}{% endblock %}
+    </section>
+    
+    {% block footer %}
+    <footer id="footer">
+        <p>© 2023 My Simple Blog</p>
+    </footer>
+{% endblock %}
+</body>
+</html>

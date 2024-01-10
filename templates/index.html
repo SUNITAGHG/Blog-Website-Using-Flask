@@ -1,0 +1,184 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    /* Styles for Welcome Message */
+    .welcome-container {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f8f8; /* Light Gray Background */
+    }
+
+    /* Styles for Post List */
+    .post-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        gap: 20px;
+    }
+
+    .post-item {
+        width: 300px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 5px;
+        transition: transform 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-item:hover {
+        transform: scale(1.05);
+    }
+
+    .post-content {
+        padding: 10px;
+    }
+
+    .post-title {
+        margin-top: 0;
+    }
+
+    /* Styles for "Add a New Post" Link */
+    .add-post-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .add-post-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #2c6a89; /* Orange Color */
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .add-post-link:hover {
+        background-color: #2c6a89; /* Keep the same color on hover */
+        color: #fff;
+    }
+
+    /* Additional Styles for Image */
+    .post-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        object-fit: cover;
+    }
+
+    /* Styles for Like Button */
+    .like-btn,
+    .comment-btn,
+    .post-comment-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: #333;
+        transition: color 0.3s ease;
+    }
+
+    .like-btn.liked {
+        color: red;
+        pointer-events: none; 
+    }
+
+   
+    .comment-form {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .comment-input {
+        width: 70%;
+        padding: 8px;
+        margin-right: 5px;
+        display: none; 
+    }
+
+    .comment-btn,
+    .post-comment-btn {
+        font-size: 16px;
+        margin-right: 5px;
+    }
+    #footer {
+        display: none;
+    }
+</style>
+
+<div class="welcome-container">
+    <h2>Welcome to My Blog!</h2>
+</div>
+
+<ul class="post-list">
+    {% for post in posts %}
+        <li class="post-item">
+            {% if post.image_path %}
+                <img src="{{ url_for('static', filename=post.image_path.replace('\\', '/')) }}" alt="{{ post['title'] }}">
+            {% endif %}
+            <div class="post-content">
+                <h3 class="post-title"><a href="{{ url_for('post_detail', post_id=post['id']) }}" class="post-link">{{ post['title'] }}</a></h3>
+                <p>{{ post['content'] }}</p>
+                <button id="likeBtn{{ post['id'] }}" class="like-btn" onclick="likePost(`{{ post['id']|safe }}`)">&#x2665;</button>
+                <button class="comment-btn" onclick="toggleCommentInput(`{{ post['id']|safe }}`)">&#x1F4AC;</button>
+                <button class="post-comment-btn" onclick="postComment(`{{ post['id']|safe }}`)">&#x1F4E5;</button>
+                
+                <!-- Comment Form -->
+                <input type="text" class="comment-input" placeholder="Add a comment">
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<div class="add-post-container">
+    <a href="{{ url_for('new_post') }}" class="add-post-link">Add a New Post</a>
+</div>
+
+<script>
+    function likePost(postId) {
+        const likeBtn = document.getElementById(`likeBtn${postId}`);
+        const likesSpan = document.getElementById(`likes${postId}`);
+
+        // Make an asynchronous request to the server to update the like count
+        fetch(`/like_post/${postId}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                // Toggle the like state
+                const isLiked = likeBtn.classList.toggle('liked');
+
+                // Update the like count in the DOM
+                likesSpan.textContent = `Likes: ${data.likes}`;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function toggleCommentInput(postId) {
+        const commentInput = document.querySelector(`#likeBtn${postId} ~ .comment-input`);
+        commentInput.style.display = commentInput.style.display === 'none' ? 'inline-block' : 'none';
+    }
+
+    function postComment(postId) {
+        const commentInput = document.querySelector(`#likeBtn${postId} ~ .comment-input`);
+        const commentText = commentInput.value.trim();
+
+        if (commentText) {
+            // Send the comment to the server (you can implement this part)
+            console.log(`Post comment for post ${postId}: ${commentText}`);
+
+            // Clear the comment input
+            commentInput.value = '';
+
+            // Hide the comment input
+            toggleCommentInput(postId);
+        }
+    }
+</script>
+{% endblock %}

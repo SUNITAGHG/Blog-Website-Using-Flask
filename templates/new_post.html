@@ -1,0 +1,129 @@
+<!-- new_post.html -->
+{% extends 'base.html' %}
+
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+    <style>
+        /* Styles for the New Post Form */
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        /* Styles for Image Preview */
+        #image-preview {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Styles for Color Options */
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Styles for Text Filters */
+        .text-filters {
+            margin-bottom: 15px;
+        }
+
+        .text-filter-option {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Additional Styles for Image */
+        #image-preview img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+
+    <h2>Create a New Post</h2>
+    <form action="{{ url_for('add_post') }}" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" rows="4" required></textarea>
+
+        <!-- Image Upload and Preview -->
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+        <div id="image-preview"></div>
+
+        <!-- Color Options -->
+        <label>Color Options:</label>
+        <div class="color-options">
+            <div class="color-option" style="background-color: #ff0000;"></div>
+            <div class="color-option" style="background-color: #00ff00;"></div>
+            <div class="color-option" style="background-color: #0000ff;"></div>
+            <!-- Add more color options as needed -->
+        </div>
+
+        <!-- Text Filters -->
+        <label>Text Filters:</label>
+        <div class="text-filters">
+            <label class="text-filter-option"><input type="checkbox" name="filter" value="bold"> Bold</label>
+            <label class="text-filter-option"><input type="checkbox" name="filter" value="italic"> Italic</label>
+            <!-- Add more text filter options as needed -->
+        </div>
+
+        <button type="submit">Create Post</button>
+    </form>
+
+    <script>
+        // JavaScript function to preview the selected image
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.innerHTML = '<img src="' + e.target.result + '" alt="Image Preview">';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.innerHTML = '';
+            }
+        }
+    </script>
+{% endblock %}

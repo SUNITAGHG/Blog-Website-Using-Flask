@@ -1,0 +1,93 @@
+<!-- post_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Blog Posts{% endblock %}
+
+{% block content %}
+<style>
+    .post-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .post-item {
+        max-width: 300px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .post-item:hover {
+        transform: scale(1.05);
+    }
+
+    .post-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-bottom: 2px solid #2c6a89; /* Orange */
+    }
+
+    .post-content {
+        padding: 20px;
+    }
+
+    .post-title {
+        font-size: 18px;
+        color: #2c6a89;
+        margin-bottom: 10px;
+    }
+
+    .post-link {
+        text-decoration: none;
+        color: #333;
+    }
+</style>
+
+<script>
+    function likePost(postId) {
+        const likeBtn = document.getElementById(`likeBtn${postId}`);
+        const likesSpan = document.getElementById(`likes${postId}`);
+
+        // Make an asynchronous request to the server to update the like count
+        fetch(`/like_post/${postId}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                // Toggle the like state
+                const isLiked = likeBtn.classList.toggle('liked');
+
+                // Update the like count in the DOM
+                likesSpan.textContent = `Likes: ${data.likes}`;
+
+                // Update the button text and color based on the like state
+                likeBtn.textContent = isLiked ? 'Liked ❤️' : 'Like';
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+<ul class="post-list">
+    {% for post in posts %}
+        <li class="post-item">
+            {% if post.image_path %}
+                <img src="{{ url_for('static', filename=post.image_path.replace('\\', '/')) }}" alt="{{ post['title'] }}">
+            {% endif %}
+            <div class="post-content">
+                <h3 class="post-title"><a href="{{ url_for('post_detail', post_id=post['id']) }}" class="post-link">{{ post['title'] }}</a></h3>
+                <p>{{ post['content'] }}</p>
+                <button id="likeBtn{{ post['id'] }}" onclick="likePost(`{{ post['id'] }}`)">Like</button>
+
+
+
+                <span id="likes{{ post['id'] }}">Likes: {{ post['likes'] }}</span>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
