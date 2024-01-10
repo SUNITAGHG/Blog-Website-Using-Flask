@@ -40,10 +40,10 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #3498db; /* Darker Blue on Hover */
+    color: #3498db; 
 }
 
-/* Content Section Styles */
+
 #content {
     text-align: center;
     padding: 50px 0;
@@ -60,19 +60,19 @@ footer {
     padding: 10px 0;
 }
 
-/* Adjustments for "My Simple Blog" to be in the middle */
+
 h1 {
     margin-top: 50px;
 }
 
-/* Ticket-style for Posts */
+
 .ticket {
     border: 1px solid #3498db;
     padding: 20px;
     margin: 20px;
 }
 
-/* Optional: Add some styling for the "Read More" link */
+
 .ticket a {
     color: #3498db;
     text-decoration: none;
@@ -80,5 +80,5 @@ h1 {
 }
 
 .ticket a:hover {
-    color: #21618c; /* Darker Blue on Hover */
+    color: #21618c;
 }
