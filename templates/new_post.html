@@ -5,7 +5,7 @@
 
 {% block content %}
     <style>
-        /* Styles for the New Post Form */
+        
         form {
             max-width: 600px;
             margin: 20px auto;
@@ -32,7 +32,7 @@
             margin-bottom: 15px;
         }
 
-        /* Styles for Image Preview */
+        
         #image-preview {
             max-width: 100%;
             height: auto;
@@ -41,7 +41,7 @@
             overflow: hidden;
         }
 
-        /* Styles for Color Options */
+        
         .color-options {
             display: flex;
             gap: 10px;
@@ -55,7 +55,7 @@
             cursor: pointer;
         }
 
-        /* Styles for Text Filters */
+        
         .text-filters {
             margin-bottom: 15px;
         }
@@ -66,7 +66,7 @@
             cursor: pointer;
         }
 
-        /* Additional Styles for Image */
+        
         #image-preview img {
             width: 100%;
             height: auto;
@@ -82,12 +82,12 @@
         <label for="content">Content:</label>
         <textarea id="content" name="content" rows="4" required></textarea>
 
-        <!-- Image Upload and Preview -->
+        
         <label for="image">Upload Image:</label>
         <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
         <div id="image-preview"></div>
 
-        <!-- Color Options -->
+        
         <label>Color Options:</label>
         <div class="color-options">
             <div class="color-option" style="background-color: #ff0000;"></div>
@@ -96,7 +96,7 @@
             <!-- Add more color options as needed -->
         </div>
 
-        <!-- Text Filters -->
+        
         <label>Text Filters:</label>
         <div class="text-filters">
             <label class="text-filter-option"><input type="checkbox" name="filter" value="bold"> Bold</label>
