@@ -9,7 +9,7 @@
     .welcome-container {
         text-align: center;
         padding: 20px;
-        background-color: #f8f8f8; /* Light Gray Background */
+        background-color: #f8f8f8; 
     }
 
     /* Styles for Post List */
@@ -44,7 +44,7 @@
         margin-top: 0;
     }
 
-    /* Styles for "Add a New Post" Link */
+    
     .add-post-container {
         text-align: center;
         margin-top: 20px;
@@ -53,14 +53,14 @@
     .add-post-link {
         display: inline-block;
         padding: 10px 20px;
-        background-color: #2c6a89; /* Orange Color */
+        background-color: #2c6a89; 
         color: #fff;
         text-decoration: none;
         border-radius: 4px;
     }
 
     .add-post-link:hover {
-        background-color: #2c6a89; /* Keep the same color on hover */
+        background-color: #2c6a89; 
         color: #fff;
     }
 
@@ -73,7 +73,7 @@
         object-fit: cover;
     }
 
-    /* Styles for Like Button */
+    
     .like-btn,
     .comment-btn,
     .post-comment-btn {
@@ -154,7 +154,7 @@
                 // Toggle the like state
                 const isLiked = likeBtn.classList.toggle('liked');
 
-                // Update the like count in the DOM
+                
                 likesSpan.textContent = `Likes: ${data.likes}`;
             })
             .catch(error => console.error('Error:', error));
@@ -170,10 +170,10 @@
         const commentText = commentInput.value.trim();
 
         if (commentText) {
-            // Send the comment to the server (you can implement this part)
+            
             console.log(`Post comment for post ${postId}: ${commentText}`);
 
-            // Clear the comment input
+            
             commentInput.value = '';
 
             // Hide the comment input
